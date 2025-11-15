@@ -6,7 +6,7 @@ transformers==4.57.1
 accelerate==1.11.0
 sentencepiece==0.2.1
 pillow==12.0.0
-torch==2.9.1+cpu
-torchvision==0.24.1+cpu
-torchaudio==2.9.1+cpu
+torch
+torchvision
+torchaudio
 numpy==2.3.4
