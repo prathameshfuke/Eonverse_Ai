@@ -71,9 +71,9 @@ streamlit run app.py --server.port 8505
 | --- | --- | --- |
 | ![Dark Mode](screenshots/3.png) | ![Action Items](screenshots/2.png) | ![Decision Log](screenshots/1.png) |
 
-| New Screenshot 1 | New Screenshot 2 | New Screenshot 3 |
+| Dashboard Overview | Meeting Analysis | Action Items Detail |
 | --- | --- | --- |
-| ![New Screenshot 1](screenshots/Screenshot%202025-11-15%20163035.png) | ![New Screenshot 2](screenshots/Screenshot%202025-11-15%20163022.png) | ![New Screenshot 3](screenshots/Screenshot%202025-11-15%20163029.png) |
+| ![Dashboard Overview](screenshots/Screenshot%202025-11-15%20163035.png) | ![Meeting Analysis](screenshots/Screenshot%202025-11-15%20163022.png) | ![Action Items Detail](screenshots/Screenshot%202025-11-15%20163029.png) |
 
 ## Notes
 
