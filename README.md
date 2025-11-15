@@ -67,13 +67,9 @@ streamlit run app.py --server.port 8505
 
 ## 📸 Screenshots
 
-| Dark summary | Light visuals |
-| --- | --- |
-| ![Dark summary](screenshots/1.png) | ![Light visuals](screenshots/2.png) |
-
-Additional decision view:
-
-![Decision log](screenshots/3.png)
+| Dark Mode | Action Items | Decision Log |
+| --- | --- | --- |
+| ![Dark Mode](screenshots/3.png) | ![Action Items](screenshots/2.png) | ![Decision Log](screenshots/1.png) |
 
 ## 🧪 Notes
 
