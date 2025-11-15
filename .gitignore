@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+
+# Virtual environments
+.venv/
+.env/
+
+# IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# Data artifacts
+/data/mised/
+/data/public_meetings/
+/data/meetingbank/
+
+# Streamlit cache
+.streamlit/
+
+# Misc
+.DS_Store
+*.log

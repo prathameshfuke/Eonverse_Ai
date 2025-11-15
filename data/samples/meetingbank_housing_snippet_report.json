@@ -1,0 +1,49 @@
+{
+  "agenda_summary": "City staff reviewed the rental assistance extension and ERP upgrade, while public commenters stressed urgency in supporting tenants and landlords.",
+  "action_items": [
+    {
+      "description": "Publish an FAQ outlining the expanded rental assistance scope for all nine districts.",
+      "owner": "Development Services",
+      "deadline": "Oct 22, 2021",
+      "support": "Speaker 1 noted staff already assist every district but need extra communication."
+    },
+    {
+      "description": "Coordinate with county supervisors to notify residents of the extended eviction moratorium.",
+      "owner": "City Council",
+      "deadline": "Oct 15, 2021",
+      "support": "Speaker 0 asked councilmembers to alert constituents about the Sept 28 decision."
+    },
+    {
+      "description": "Increase staffing for application processing to shorten tenant wait times.",
+      "owner": "City Manager",
+      "deadline": "Immediate",
+      "support": "Public comment emphasized the need to expedite and streamline the workload."
+    }
+  ],
+  "decisions": [
+    {
+      "summary": "Adopt resolution to execute state rental assistance grant documents and amend Yardi contract.",
+      "support": "Speakers described the vote to participate in round two and fund ERP implementation."
+    },
+    {
+      "summary": "Encourage districts to continue informing residents of Covid-era protections.",
+      "support": "Speaker 0 urged council to brief constituents on the extended moratorium."
+    }
+  ],
+  "visuals": [
+    {
+      "image_path": "data/sample_images/project_update.png",
+      "caption": "Slide showing Q4 Launch Roadmap with staffing and funding checkpoints.",
+      "linked_topics": [
+        "Rental assistance staffing"
+      ]
+    },
+    {
+      "image_path": "data/sample_images/retro_notes.png",
+      "caption": "Retro board highlighting Next Steps for application triage teams.",
+      "linked_topics": [
+        "Process improvements"
+      ]
+    }
+  ]
+}
