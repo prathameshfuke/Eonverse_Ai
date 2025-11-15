@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import base64
 import json
 import shutil
 import tempfile
@@ -19,57 +20,127 @@ st.set_page_config(page_title="Meeting Intelligence Dashboard", layout="wide", p
 st.markdown(
     """
     <style>
+    :root {
+        --card-bg: #ffffff;
+        --card-border: #e2e8f0;
+        --text-color: #0f172a;
+        --subtle-text: #475569;
+        --accent-bg: #eef2ff;
+        --hero-grad: radial-gradient(circle at top left, #312e81, #0f172a);
+    }
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --card-bg: #111827;
+            --card-border: #1f2937;
+            --text-color: #f8fafc;
+            --subtle-text: #94a3b8;
+            --accent-bg: #1e293b;
+            --hero-grad: radial-gradient(circle at top left, #4338ca, #0b1120);
+        }
+    }
     .meeting-hero {
-        background: radial-gradient(circle at top left, #312e81, #0f172a);
+        background: var(--hero-grad);
         border-radius: 24px;
         padding: 38px;
         color: #f8fafc;
         margin-bottom: 1.5rem;
         box-shadow: 0 25px 40px rgba(15, 23, 42, 0.35);
     }
-    .meeting-hero h1 {font-size: 2.5rem !important; margin-bottom: 0.6rem;}
-    .meeting-hero p {font-size: 1.08rem; opacity: 0.9;}
+    .meeting-hero h1 {font-size: 2.5rem !important; margin-bottom: 0.4rem;}
+    .meeting-hero p {font-size: 1.05rem; opacity: 0.9;}
+    .hero-pill {
+        display: inline-flex;
+        gap: 0.6rem;
+        align-items: center;
+        padding: 0.3rem 0.9rem;
+        background: rgba(248, 250, 252, 0.15);
+        border-radius: 999px;
+        font-size: 0.9rem;
+    }
     .metric-card {
-        background: #ffffff;
+        background: var(--card-bg);
         border-radius: 18px;
         padding: 20px;
-        border: 1px solid #e2e8f0;
+        border: 1px solid var(--card-border);
         box-shadow: 0 20px 30px rgba(15, 23, 42, 0.08);
     }
-    .metric-card h3 {color: #64748b; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.08em; margin:0;}
-    .metric-card p {font-size: 1.9rem; margin: 0.35rem 0 0; font-weight: 600; color: #0f172a;}
+    .metric-card h3 {color: var(--subtle-text); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.08em; margin:0;}
+    .metric-card p {font-size: 1.9rem; margin: 0.35rem 0 0; font-weight: 600; color: var(--text-color);}
     .insight-card {
-        background: #fff;
+        background: var(--card-bg);
         border-radius: 18px;
         padding: 1.15rem;
-        border: 1px solid #e2e8f0;
-        box-shadow: 0 10px 18px rgba(15, 23, 42, 0.08);
+        border: 1px solid var(--card-border);
+        box-shadow: 0 10px 18px rgba(15, 23, 42, 0.12);
         margin-bottom: 1rem;
     }
-    .insight-card h4 {margin-bottom: 0.4rem;}
+    .insight-card h4 {margin-bottom: 0.4rem; color: var(--text-color);}
     .support-card {
         border-left: 4px solid #4f46e5;
         padding: 0.5rem 0.8rem;
-        background: #eef2ff;
+        background: var(--accent-bg);
         border-radius: 10px;
         margin-top: 0.4rem;
         font-size: 0.92rem;
+        color: var(--subtle-text);
     }
     .timeline-meta {
         display: flex;
         gap: 1rem;
         font-size: 0.92rem;
-        color: #475569;
+        color: var(--subtle-text);
         flex-wrap: wrap;
     }
-    .stTabs [data-baseweb="tab-list"] {gap: 0.5rem;}
-    .stTabs [data-baseweb="tab"] {
+    .stTabs [data-baseweb=\"tab-list\"] {gap: 0.5rem;}
+    .stTabs [data-baseweb=\"tab\"] {
         padding: 0.55rem 1.25rem;
         border-radius: 999px;
-        background: #e2e8f0;
-        color: #0f172a;
+        background: rgba(148, 163, 184, 0.35);
+        color: var(--text-color);
+    }
+    .visual-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 18px;
+        border: 1px solid var(--card-border);
+        box-shadow: 0 15px 30px rgba(15, 23, 42, 0.18);
+        margin-bottom: 1.2rem;
+        background: var(--card-bg);
+    }
+    .visual-card img {width: 100%; height: 240px; object-fit: cover; display: block;}
+    .visual-card .visual-meta {
+        padding: 0.9rem 1rem 1.1rem;
+        color: var(--text-color);
+    }
+    .visual-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.2rem 0.7rem;
+        border-radius: 999px;
+        background: var(--accent-bg);
+        font-size: 0.85rem;
+        color: var(--subtle-text);
     }
     </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+def _image_to_base64(path: str) -> str:
+    try:
+        data = Path(path).read_bytes()
+    except FileNotFoundError:
+        return ""
+    return base64.b64encode(data).decode("utf-8")
+
+st.markdown(
+    """
+    <div class="meeting-hero">
+        <div class="hero-pill">AI-powered minutes • Transcript + Vision</div>
+        <h1>Meeting Intelligence Dashboard</h1>
+        <p>Surface priorities, accountable owners, and context hints from meeting transcripts. Use <strong>Rapid Demo</strong> for instant walkthroughs or switch to <strong>Custom Analysis</strong> when you're ready to upload material.</p>
+    </div>
     """,
     unsafe_allow_html=True,
 )
@@ -176,7 +247,7 @@ with summary_tab:
 with actions_tab:
     if action_records:
         action_df = pd.DataFrame(action_records)
-        st.dataframe(action_df, use_container_width=True)
+        st.dataframe(action_df, width="stretch")
         st.markdown("#### Owner timeline")
         for item in action_records:
             actions_tab.markdown(
@@ -198,7 +269,7 @@ with actions_tab:
 with decisions_tab:
     if decision_records:
         decision_df = pd.DataFrame(decision_records)
-        st.dataframe(decision_df, use_container_width=True)
+        st.dataframe(decision_df, width="stretch")
         st.markdown("#### Decision highlights")
         for item in decision_records:
             decisions_tab.markdown(
@@ -216,12 +287,27 @@ with decisions_tab:
 with visuals_tab:
     if visual_records:
         visual_df = pd.DataFrame(visual_records)
-        st.dataframe(visual_df, use_container_width=True)
+        st.dataframe(visual_df, width="stretch")
         preview_cols = st.columns(min(3, len(visual_records)))
         for idx, record in enumerate(visual_records):
             col = preview_cols[idx % len(preview_cols)]
             with col:
-                col.image(record["image_path"], caption=record["caption"], use_column_width=True)
+                encoded = _image_to_base64(record["image_path"])
+                if encoded:
+                    col.markdown(
+                        f"""
+                        <div class='visual-card'>
+                            <img src='data:image/png;base64,{encoded}' alt='{record['caption']}'>
+                            <div class='visual-meta'>
+                                <strong>{record['caption']}</strong>
+                                <div class='visual-tag'>📌 {record['linked_topics']}</div>
+                            </div>
+                        </div>
+                        """,
+                        unsafe_allow_html=True,
+                    )
+                else:
+                    col.info(record["caption"])
     else:
         st.info("No screenshots analyzed.")
 
