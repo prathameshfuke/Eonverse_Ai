@@ -456,7 +456,7 @@ with actions_tab:
     if action_records:
         st.markdown("### 📊 Action Items Overview")
         action_df = pd.DataFrame(action_records)
-        st.dataframe(action_df, use_container_width=True, hide_index=True)
+        st.dataframe(action_df, width='stretch', hide_index=True)
         
         st.markdown("### 👥 Owner Timeline")
         for item in action_records:
@@ -480,7 +480,7 @@ with decisions_tab:
     if decision_records:
         st.markdown("### 📊 Decisions Overview")
         decision_df = pd.DataFrame(decision_records)
-        st.dataframe(decision_df, use_container_width=True, hide_index=True)
+        st.dataframe(decision_df, width='stretch', hide_index=True)
         
         st.markdown("### 🎯 Decision Highlights")
         for item in decision_records:
@@ -500,7 +500,7 @@ with visuals_tab:
     if visual_records:
         st.markdown("### 📊 Visual Content Overview")
         visual_df = pd.DataFrame(visual_records)
-        st.dataframe(visual_df, use_container_width=True, hide_index=True)
+        st.dataframe(visual_df, width='stretch', hide_index=True)
         
         st.markdown("### 🖼️ Screenshot Gallery")
         preview_cols = st.columns(min(3, len(visual_records)))
@@ -538,7 +538,7 @@ with exports_tab:
                 data=pd.DataFrame(action_records).to_csv(index=False),
                 file_name="actions.csv",
                 mime="text/csv",
-                use_container_width=True,
+                width='stretch',
             )
     
     with col2:
@@ -548,7 +548,7 @@ with exports_tab:
                 data=pd.DataFrame(decision_records).to_csv(index=False),
                 file_name="decisions.csv",
                 mime="text/csv",
-                use_container_width=True,
+                width='stretch',
             )
     
     with col3:
@@ -557,7 +557,7 @@ with exports_tab:
             data=report.as_markdown_table().encode("utf-8"),
             file_name="meeting_summary.md",
             mime="text/markdown",
-            use_container_width=True,
+            width='stretch',
         )
     
     st.markdown(
